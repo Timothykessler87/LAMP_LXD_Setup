@@ -45,13 +45,12 @@ fi
 
 if ! lxc image list |grep ubuntu-trusty > /dev/null ; then
     echo "Importing the ubuntu trusty image"
-    lxd-images import ubuntu trusty amd64 --sync --alias ubuntu-trusty
+    lxc launch images:ubuntu/trusty/amd64 $CONTAINER_NAME
 fi
 
 function create_lamp_container () {
 
     echo "Launching container with name $CONTAINER_NAME"
-    lxc launch ubuntu-trusty $CONTAINER_NAME
 
     echo "Waiting until the container responds to ping."
     
